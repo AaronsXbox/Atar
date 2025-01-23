@@ -1,0 +1,116 @@
+[gd_scene load_steps=14 format=3 uid="uid://dw2jkth1jmw7x"]
+
+[ext_resource type="Script" path="res://Maps/Outside/outside.gd" id="1_ep6py"]
+[ext_resource type="Texture2D" uid="uid://cmxe57rj6jlm2" path="res://textures/pixilart-layers (3)/pixil-layer-0.png" id="1_mo1e5"]
+[ext_resource type="Texture2D" uid="uid://bi85rpy8cwb41" path="res://textures/pixilart-layers (3)/pixil-layer-2.png" id="2_4v2ia"]
+[ext_resource type="Texture2D" uid="uid://iaxhxdw58lqb" path="res://textures/pixilart-layers (2)/pixil-layer-0.png" id="3_g3uke"]
+[ext_resource type="PackedScene" uid="uid://b65qkumkxuvrn" path="res://Characters/Player/player.tscn" id="4_qxt2q"]
+[ext_resource type="Texture2D" uid="uid://b6gcxosx40iv6" path="res://textures/pixilart-layers (1)/pixil-layer-0.png" id="5_pjp6c"]
+[ext_resource type="Texture2D" uid="uid://cu1triixae76n" path="res://textures/pixilart-layers (2)/pixil-layer-2.png" id="6_xacxb"]
+[ext_resource type="Texture2D" uid="uid://bqqth6m2vbkcc" path="res://textures/pixilart-layers (2)/pixil-layer-1.png" id="8_syq58"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lqwd"]
+size = Vector2(10, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tlndk"]
+radius = 3.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3nr7o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_xacxb")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_syq58")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xacxb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_syq58")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xacxb")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qv16c"]
+size = Vector2(3, 6.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_744rv"]
+
+[node name="Outside" type="Node2D"]
+script = ExtResource("1_ep6py")
+
+[node name="Pixil-layer-0" type="Sprite2D" parent="."]
+texture = ExtResource("1_mo1e5")
+
+[node name="Pixil-layer-2" type="Sprite2D" parent="."]
+position = Vector2(0, 36)
+texture = ExtResource("2_4v2ia")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(16.005, 16.005)
+
+[node name="Pixil-layer-1" type="Sprite2D" parent="."]
+position = Vector2(19, 10.8)
+scale = Vector2(-0.8, 0.8)
+texture = ExtResource("3_g3uke")
+
+[node name="Pixil-layer-3" type="Sprite2D" parent="."]
+position = Vector2(15, 12.8)
+rotation = 3.14159
+scale = Vector2(0.5, -0.5)
+texture = ExtResource("5_pjp6c")
+
+[node name="Player" parent="." instance=ExtResource("4_qxt2q")]
+position = Vector2(-22, 12)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-25, 6, 25, 6, 25, 25, -25, 25, -25, 8, -27, 8, -28, 29, 28, 27, 28, 2, -27, 4)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(19, 8)
+shape = SubResource("RectangleShape2D_6lqwd")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(19, 18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_tlndk")
+
+[node name="Dog" type="CharacterBody2D" parent="."]
+position = Vector2(20, 17)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Dog4" type="AnimatedSprite2D" parent="Dog"]
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_3nr7o")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dog"]
+position = Vector2(-1, -0.75)
+shape = SubResource("RectangleShape2D_qv16c")
+
+[node name="Exit" type="Area2D" parent="."]
+position = Vector2(-31, 17)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
+shape = SubResource("RectangleShape2D_744rv")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]

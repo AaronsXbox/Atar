@@ -1,0 +1,201 @@
+[gd_scene load_steps=21 format=3 uid="uid://b0pdw36iyropy"]
+
+[ext_resource type="Script" path="res://Maps/ReturnToHouse/house.gd" id="1_7h17n"]
+[ext_resource type="Texture2D" uid="uid://cmxe57rj6jlm2" path="res://textures/pixilart-layers (3)/pixil-layer-0.png" id="1_7tpt4"]
+[ext_resource type="Texture2D" uid="uid://cghp8bnlco72o" path="res://textures/pixilart-layers (2)/pixilart-layers (4)/pixil-layer-1.png" id="2_p1ic8"]
+[ext_resource type="PackedScene" uid="uid://b65qkumkxuvrn" path="res://Characters/Player/player.tscn" id="3_4t1c8"]
+[ext_resource type="Texture2D" uid="uid://cu1triixae76n" path="res://textures/pixilart-layers (2)/pixil-layer-2.png" id="4_31o6l"]
+[ext_resource type="AudioStream" uid="uid://cflrq7wem3lv6" path="res://textures/pixilart-layers (2)/DogWalk.wav" id="5_0wsom"]
+[ext_resource type="AudioStream" uid="uid://dkb02eo7qtuan" path="res://textures/pixilart-layers (2)/Alarm.wav" id="6_cnku8"]
+[ext_resource type="Texture2D" uid="uid://df55ba02bkvn4" path="res://textures/pixilart-layers (2)/pixilart-layers (4)/pixil-layer-2.png" id="7_nwwip"]
+[ext_resource type="Texture2D" uid="uid://b7nntsy3s68ex" path="res://textures/pixilart-layers (2)/pixilart-layers (4)/pixil-layer-4.png" id="8_d0umj"]
+[ext_resource type="Texture2D" uid="uid://dnvwicexq18dl" path="res://textures/pixilart-layers (2)/pixilart-layers (4)/pixil-layer-3.png" id="9_g2lm7"]
+[ext_resource type="Texture2D" uid="uid://bmugewrfssvex" path="res://textures/icon2.png" id="10_k6npg"]
+[ext_resource type="Texture2D" uid="uid://bqqth6m2vbkcc" path="res://textures/pixilart-layers (2)/pixil-layer-1.png" id="12_i3o8k"]
+[ext_resource type="FontFile" uid="uid://c7ivlf0mwupi1" path="res://Singleton/Dotemp-8bit.ttf" id="13_5r2u3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5hill"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_d0umj")
+}],
+"loop": true,
+"name": &"Closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_g2lm7")
+}],
+"loop": true,
+"name": &"Open",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ukh1o"]
+radius = 2.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lhcju"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_31o6l")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_i3o8k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_31o6l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_i3o8k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_31o6l")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_frvsq"]
+size = Vector2(3, 3.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mnwyh"]
+radius = 2.23607
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g1wxj"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lxl38"]
+radius = 7.0
+
+[node name="House" type="Node2D"]
+script = ExtResource("1_7h17n")
+
+[node name="Pixil-layer-0" type="Sprite2D" parent="."]
+texture = ExtResource("1_7tpt4")
+
+[node name="Pixil-layer-1" type="Sprite2D" parent="."]
+texture = ExtResource("2_p1ic8")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(16.005, 16.005)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-12, -10, -12, -4, -22, -4, -22, -22, -1, -22, -1, -18, 10, -18, 10, -22, 21, -22, 21, 21, 10, 21, 10, 15, -1, 15, -1, 21, -6, 21, -6, 31, 25, 25, 25, -25, -25, -25, -25, 25, -15, 31, -6, 31, -6, 25, -15, 25, -15, 21, -22, 21, -22, 2, -12, 2, -12, 8, 10, 8, 10, 2, 1, 4, 1, -1, 12, -2, 11, -2, 10, -2, 10, -10)
+
+[node name="Player" parent="." instance=ExtResource("3_4t1c8")]
+position = Vector2(-8, 22)
+
+[node name="Dog" type="Sprite2D" parent="."]
+position = Vector2(-5, -4)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_31o6l")
+
+[node name="Dog2" type="Sprite2D" parent="."]
+position = Vector2(-5, 1)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_31o6l")
+
+[node name="Dog3" type="Sprite2D" parent="."]
+position = Vector2(1, -4)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_31o6l")
+
+[node name="PropDog4" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, 1)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_31o6l")
+
+[node name="DogWalk" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_0wsom")
+
+[node name="Alarm" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(32, -4)
+stream = ExtResource("6_cnku8")
+
+[node name="Pixil-layer-2" type="Sprite2D" parent="."]
+position = Vector2(1, 1)
+texture = ExtResource("7_nwwip")
+
+[node name="Door" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5hill")
+animation = &"Open"
+
+[node name="Icon2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-1.52588e-05, -1.52588e-05)
+scale = Vector2(0.0815661, 0.0809062)
+texture = ExtResource("10_k6npg")
+
+[node name="Exit" type="Area2D" parent="."]
+
+[node name="FireAlarmTrigger" type="Area2D" parent="."]
+position = Vector2(21, 11)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireAlarmTrigger"]
+shape = SubResource("CircleShape2D_ukh1o")
+
+[node name="Dog4" type="CharacterBody2D" parent="."]
+position = Vector2(-12, 22)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Dog4" type="AnimatedSprite2D" parent="Dog4"]
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_lhcju")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dog4"]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_frvsq")
+
+[node name="DogInCrateChecker" type="Area2D" parent="."]
+position = Vector2(2, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DogInCrateChecker"]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_mnwyh")
+
+[node name="DogKennalDoorTrigger" type="Area2D" parent="."]
+
+[node name="Area2D" type="CollisionShape2D" parent="DogKennalDoorTrigger"]
+position = Vector2(10, -1)
+shape = SubResource("CircleShape2D_g1wxj")
+
+[node name="BedTrigger" type="Area2D" parent="."]
+position = Vector2(-15, -15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BedTrigger"]
+position = Vector2(2, -2)
+shape = SubResource("CircleShape2D_lxl38")
+
+[node name="Label" type="RichTextLabel" parent="."]
+visible = false
+offset_left = -7.0
+offset_top = -4.0
+offset_right = 158.0
+offset_bottom = 114.0
+scale = Vector2(0.085, 0.085)
+theme_override_fonts/normal_font = ExtResource("13_5r2u3")
+text = "            The End
+Code,sfx,Pixel Art by Aaron Baer,
+Title Artwork by Ai"
+
+[connection signal="body_entered" from="FireAlarmTrigger" to="." method="_on_fire_alarm_trigger_body_entered"]
+[connection signal="body_exited" from="FireAlarmTrigger" to="." method="_on_fire_alarm_trigger_body_exited"]
+[connection signal="body_entered" from="DogInCrateChecker" to="." method="_on_dog_in_crate_checker_body_entered"]
+[connection signal="body_entered" from="DogKennalDoorTrigger" to="." method="_on_dog_kennal_door_trigger_body_entered"]
+[connection signal="body_exited" from="DogKennalDoorTrigger" to="." method="_on_dog_kennal_door_trigger_body_exited"]
+[connection signal="body_entered" from="BedTrigger" to="." method="_on_bed_trigger_body_entered"]
+[connection signal="body_exited" from="BedTrigger" to="." method="_on_bed_trigger_body_exited"]

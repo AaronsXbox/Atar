@@ -1,0 +1,309 @@
+[gd_scene load_steps=20 format=3 uid="uid://bf82id8vdre7r"]
+
+[ext_resource type="Texture2D" uid="uid://cmxe57rj6jlm2" path="res://textures/pixilart-layers (3)/pixil-layer-0.png" id="1_32gyg"]
+[ext_resource type="Script" path="res://Maps/Test World/test_world.gd" id="1_g85k4"]
+[ext_resource type="Texture2D" uid="uid://cghp8bnlco72o" path="res://textures/pixilart-layers (2)/pixilart-layers (4)/pixil-layer-1.png" id="2_skble"]
+[ext_resource type="PackedScene" uid="uid://b65qkumkxuvrn" path="res://Characters/Player/player.tscn" id="3_lqk1b"]
+[ext_resource type="Texture2D" uid="uid://cu1triixae76n" path="res://textures/pixilart-layers (2)/pixil-layer-2.png" id="4_5watd"]
+[ext_resource type="Texture2D" uid="uid://bqqth6m2vbkcc" path="res://textures/pixilart-layers (2)/pixil-layer-1.png" id="5_jw0xo"]
+[ext_resource type="AudioStream" uid="uid://cflrq7wem3lv6" path="res://textures/pixilart-layers (2)/DogWalk.wav" id="6_ueqk3"]
+[ext_resource type="AudioStream" uid="uid://dkb02eo7qtuan" path="res://textures/pixilart-layers (2)/Alarm.wav" id="7_b2b30"]
+[ext_resource type="Texture2D" uid="uid://df55ba02bkvn4" path="res://textures/pixilart-layers (2)/pixilart-layers (4)/pixil-layer-2.png" id="8_6cwxv"]
+[ext_resource type="Texture2D" uid="uid://b7nntsy3s68ex" path="res://textures/pixilart-layers (2)/pixilart-layers (4)/pixil-layer-4.png" id="9_cbuby"]
+[ext_resource type="Texture2D" uid="uid://dnvwicexq18dl" path="res://textures/pixilart-layers (2)/pixilart-layers (4)/pixil-layer-3.png" id="10_yitfx"]
+[ext_resource type="Texture2D" uid="uid://bmugewrfssvex" path="res://textures/icon2.png" id="12_fb7cy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6gff3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_5watd")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_jw0xo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5watd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jw0xo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5watd")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 2.0
+}]
+
+[sub_resource type="Animation" id="Animation_m3rl6"]
+resource_name = "Dog Escape"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dog4:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.0333333, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [&"Idle", &"Walk"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dog4:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.0333333, 0.7, 0.966667, 1.26667, 2.93333, 3.2, 4.5, 4.73333, 5.26667, 5.5, 5.86667, 7.46667, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(5, 1), Vector2(5, 1), Vector2(5, -1), Vector2(16, -1), Vector2(16, -1), Vector2(16, 11), Vector2(16, 11), Vector2(20, 11), Vector2(19, 11), Vector2(19, 11), Vector2(-11, 11), Vector2(-11, 28)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DogWalk:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(-0.1, 0.133333, 1.5, 1.66667, 3.01125, 3.21125, 4.50125, 4.65125, 5.36667, 5.76667, 5.93333, 7.26667, 7.43333, 8.30125, 8.5, 8.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true, false, false, true, false, true, false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Dog4:scale")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(-0.0333333, 5.7, 5.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.4, 0.4), Vector2(0.4, 0.4), Vector2(-0.4, 0.4)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Alarm:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(-0.0666667, 5.13333, 5.23333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Door:animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.23333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"Closed", &"Open"]
+}
+
+[sub_resource type="Animation" id="Animation_r1j6a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DogWalk:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dog4:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Dog4:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Dog4:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.4, 0.4)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Alarm:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Door:animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Open"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8620w"]
+_data = {
+"Dog Escape": SubResource("Animation_m3rl6"),
+"RESET": SubResource("Animation_r1j6a")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hrqaf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_cbuby")
+}],
+"loop": true,
+"name": &"Closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_yitfx")
+}],
+"loop": true,
+"name": &"Open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_45nqu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ffx8"]
+radius = 2.0
+
+[node name="TestWorld" type="Node2D"]
+script = ExtResource("1_g85k4")
+
+[node name="Pixil-layer-0" type="Sprite2D" parent="."]
+texture = ExtResource("1_32gyg")
+
+[node name="Pixil-layer-1" type="Sprite2D" parent="."]
+texture = ExtResource("2_skble")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(16.005, 16.005)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+visible = false
+polygon = PackedVector2Array(-12, -10, -12, -4, -22, -4, -22, -22, -1, -22, -1, -18, 10, -18, 10, -22, 21, -22, 21, 21, 10, 21, 10, 15, -1, 15, -1, 21, -6, 21, -6, 31, 25, 25, 25, -25, -25, -25, -25, 25, -15, 31, -6, 31, -6, 25, -15, 25, -15, 21, -22, 21, -22, 2, -12, 2, -12, 8, 10, 8, 10, 2, 6, 2, 6, -1, 12, -1, 12, -2, 10, -2, 10, -10)
+
+[node name="Player" parent="." instance=ExtResource("3_lqk1b")]
+position = Vector2(-17, -14)
+canMove = false
+
+[node name="Dog" type="Sprite2D" parent="."]
+position = Vector2(-5, -4)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_5watd")
+
+[node name="Dog2" type="Sprite2D" parent="."]
+position = Vector2(-5, 1)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_5watd")
+
+[node name="Dog3" type="Sprite2D" parent="."]
+position = Vector2(1, -4)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_5watd")
+
+[node name="Dog4" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 1)
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_6gff3")
+animation = &"Idle"
+
+[node name="DogWalk" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ueqk3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8620w")
+}
+
+[node name="Alarm" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(32, -4)
+stream = ExtResource("7_b2b30")
+
+[node name="Pixil-layer-2" type="Sprite2D" parent="."]
+position = Vector2(1, 1)
+texture = ExtResource("8_6cwxv")
+
+[node name="Door" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hrqaf")
+animation = &"Open"
+
+[node name="Icon2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-1.52588e-05, -1.52588e-05)
+scale = Vector2(0.0815661, 0.0809062)
+texture = ExtResource("12_fb7cy")
+
+[node name="Exit" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
+position = Vector2(-10, 33)
+shape = SubResource("RectangleShape2D_45nqu")
+
+[node name="FireAlarmTrigger" type="Area2D" parent="."]
+position = Vector2(21, 11)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireAlarmTrigger"]
+shape = SubResource("CircleShape2D_5ffx8")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]
+[connection signal="body_entered" from="FireAlarmTrigger" to="." method="_on_fire_alarm_trigger_body_entered"]
+[connection signal="body_exited" from="FireAlarmTrigger" to="." method="_on_fire_alarm_trigger_body_exited"]

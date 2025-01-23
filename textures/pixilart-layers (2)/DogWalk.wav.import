@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cflrq7wem3lv6"
+path="res://.godot/imported/DogWalk.wav-816066e994834947c9b1cb3efd67ea65.sample"
+
+[deps]
+
+source_file="res://textures/pixilart-layers (2)/DogWalk.wav"
+dest_files=["res://.godot/imported/DogWalk.wav-816066e994834947c9b1cb3efd67ea65.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

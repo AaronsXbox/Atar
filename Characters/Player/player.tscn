@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://b65qkumkxuvrn"]
+
+[ext_resource type="Script" path="res://Characters/Player/player.gd" id="1_buf6t"]
+[ext_resource type="Texture2D" uid="uid://cb4gudlttssdd" path="res://textures/pixilart-layers/pixil-layer-0.png" id="1_hs40j"]
+[ext_resource type="Texture2D" uid="uid://dww4rjky2i14p" path="res://textures/pixilart-layers/pixil-layer-1.png" id="2_6wfr5"]
+[ext_resource type="Texture2D" uid="uid://cqmkj0c2b2n03" path="res://textures/pixilart-layers/pixil-layer-2.png" id="3_ptb1h"]
+[ext_resource type="AudioStream" uid="uid://b2tbx8h4kl03m" path="res://textures/walk.wav" id="5_uqcbm"]
+[ext_resource type="AudioStream" uid="uid://chk33iv6tu0xl" path="res://textures/pixilart-layers (2)/enteract.wav" id="6_ncv1p"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gphil"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hs40j")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6wfr5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_hs40j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ptb1h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_hs40j")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ln52x"]
+size = Vector2(4, 6)
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_buf6t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_gphil")
+animation = &"Idle"
+frame_progress = 0.784822
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ln52x")
+
+[node name="Walk" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-1, 0)
+stream = ExtResource("5_uqcbm")
+
+[node name="Enteract" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ncv1p")
+
+[connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_changed"]

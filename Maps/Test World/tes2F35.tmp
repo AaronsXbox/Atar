@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bf82id8vdre7r"]
+
+[ext_resource type="Texture2D" uid="uid://cmxe57rj6jlm2" path="res://textures/pixilart-layers (3)/pixil-layer-0.png" id="1_32gyg"]
+[ext_resource type="Texture2D" uid="uid://kjxxii2n62nb" path="res://textures/pixilart-layers (3)/pixil-layer-1.png" id="2_f64sd"]
+[ext_resource type="PackedScene" uid="uid://b65qkumkxuvrn" path="res://Characters/Player/player.tscn" id="3_lqk1b"]
+
+[node name="TestWorld" type="Node2D"]
+
+[node name="Pixil-layer-0" type="Sprite2D" parent="."]
+texture = ExtResource("1_32gyg")
+
+[node name="Pixil-layer-1" type="Sprite2D" parent="."]
+texture = ExtResource("2_f64sd")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(16.005, 16.005)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-12, -10, -12, -4, -22, -4, -22, -22, -1, -22, -1, -18, 10, -18, 10, -22, 21, -22, 21, 21, 10, 21, 10, 15, -1, 15, -1, 21, -6, 21, -6, 25, 25, 25, 25, -25, -25, -25, -25, 25, -15, 25, -15, 21, -22, 21, -22, 2, -12, 2, -12, 8, 10, 8, 10, 2, 6, 2, 6, -1, 12, -1, 12, -2, 10, -2, 10, -10)
+
+[node name="Player" parent="." instance=ExtResource("3_lqk1b")]
+position = Vector2(-17, -14)
